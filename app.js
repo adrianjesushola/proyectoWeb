@@ -10,7 +10,7 @@ const PORT = process.env.PORT;
 hbs.registerPartials(__dirname+'/views/partials');
 
 app.set('view engine', 'hbs');
-app.use(express.static('public'));
+app.use(express.static(__dirname+'/public'));
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(fileUpload());
@@ -45,7 +45,7 @@ app.post('/inicio', async function (req, res) {
         }
         publicaciones[pub]['liked']=liked;
     }
-    console.log(publicaciones)
+    publicaciones.reverse();
     cdx ={usuario: us, posts: publicaciones}
     res.render('todasLasImagenes',cdx);
 })
@@ -59,6 +59,8 @@ app.post('/Miperfil', async function (req, res) {
         const pubLiked = await knex('post').where({id:likes[like].post});
         pubsLiked.push(pubLiked[0]);
     }
+    publicaciones.reverse();
+    pubsLiked.reverse();
     cdx ={usuario: us, posts: publicaciones, postsL: pubsLiked}
     res.render('perfil',cdx);
 })
@@ -73,7 +75,18 @@ app.post('/subirImagen', async (req, res) =>{
     const user = req.body.userId
     if (data){
         await  knex.insert({Descripcion:descripcion, imagen:data,userId:user}).into('post');
-        res.sendStatus(200);
+        const us = req.body.userId
+        const publicaciones = await knex('post').where({userId:us});
+        const likes = await knex('likes').where({usuario:us});
+        let pubsLiked = []
+        for (const like in likes) {
+            const pubLiked = await knex('post').where({id:likes[like].post});
+            pubsLiked.push(pubLiked[0]);
+        }
+        publicaciones.reverse();
+        pubsLiked.reverse();
+        cdx ={usuario: us, posts: publicaciones, postsL: pubsLiked}
+        res.render('perfil',cdx);
     } else {
         res.sendStatus(400);
     }
