@@ -14,6 +14,10 @@
     <input type="hidden" id="var1" name="userId" value="{{usuario}}"/>
     <input type="submit" value="IrPerfil">
 </form>
+<form action="http://localhost:8080/nuevaPubli" method="POST" id="formoculto">
+    <input type="hidden" id="var1" name="userId" value="{{usuario}}"/>
+    <input type="submit" value="subir foto">
+</form>
 {{#each posts}}
     {{#if this.liked}}
         <form action="javascript:;" onsubmit="favorito({{this.id}},{{usuario}});" >
