@@ -36,11 +36,16 @@ app.post('/inicio', async function (req, res) {
     const likes = await knex('likes').where({usuario:us});
     let pubsLiked = []
     for (const pub in publicaciones){
+        let liked = false;
         for (const like in likes) {
-            const pubLiked = await knex('post').where({id:likes[like].post});
-            pubsLiked.push(pubLiked[0]);
+            if (likes[like].post==publicaciones[pub].id){
+                liked=true;
+                break;
+            }
         }
+        publicaciones[pub]['liked']=liked;
     }
+    console.log(publicaciones)
     cdx ={usuario: us, posts: publicaciones}
     res.render('todasLasImagenes',cdx);
 })
@@ -97,7 +102,15 @@ app.post('/registrar', async (req, res) =>{
 app.post('/favorito', async (req, res) =>{
     const post = req.body.fotoo
     const usuario = req.body.usuario
-    await knex.insert({usuario:usuario, post:post}).into('likes');
+    const li = await knex('likes').where({post:post, usuario:usuario}).first();
+    if (li){
+        await knex('likes').where({post:post, usuario:usuario}).first().del();
+        res.end((JSON.stringify({resu:1})))
+    } else {
+        await knex.insert({usuario:usuario, post:post}).into('likes');
+        res.end((JSON.stringify({resu:2})))
+    }
+
 })
 
 app.post('/iniciarSesion', async (req, res) =>{

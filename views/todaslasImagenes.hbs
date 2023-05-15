@@ -15,8 +15,16 @@
     <input type="submit" value="IrPerfil">
 </form>
 {{#each posts}}
-    <form action="javascript:;" onsubmit="favorito({{this.id}},{{usuario}});" >
-        <input type="submit" value="like">
+    {{#if this.liked}}
+        <form action="javascript:;" onsubmit="favorito({{this.id}},{{usuario}});" >
+            <input id='likeB{{this.id}}' type="submit" value="unlike">
+        </form>
+    {{/if}}
+    {{#unless this.liked}}
+        <form action="javascript:;" onsubmit="favorito({{this.id}},{{usuario}});" >
+            <input id='likeB{{this.id}}' type="submit" value="like">
+        </form>
+    {{/unless}}
     <p>{{this.id}}</p>
     <p>{{this.Descripcion}}</p>
     <img src="http://localhost:8080/photo/{{this.id}}" alt="your image" />
@@ -39,6 +47,8 @@
         }
     }
     async function favorito(id,usuario){
+        const likebtn = document.getElementById('likeB'+id);
+        let caca;
         await fetch('http://localhost:8080/favorito', {
             method: 'POST',
             headers: {
@@ -46,9 +56,15 @@
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ "fotoo": id, "usuario": {{usuario}} })
-        })
+        }).then(response => response.json())
+                .then(response => {
+                    caca = response
+                })
+        if (caca.resu==1)
+            likebtn.value='like';
+        if (caca.resu==2)
+            likebtn.value='unlike';
+
     }
-    function eslikeado(){
-        return true;
-    }
+
 </script>
