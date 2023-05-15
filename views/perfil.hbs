@@ -21,9 +21,14 @@
 {{/each}}
 <p>Guardados</p>
 {{#each postsL}}
-    <p>{{this.id}}</p>
-    <p>{{this.Descripcion}}</p>
-    <img src="http://localhost:8080/photo/{{this.id}}" alt="your image" />
+    <div id="post{{this.id}}">
+        <form action="javascript:;" onsubmit="favorito({{this.id}},{{usuario}});" >
+            <input id='likeB{{this.id}}' type="submit" value="unlike">
+        </form>
+        <p>{{this.id}}</p>
+        <p>{{this.Descripcion}}</p>
+        <img src="http://localhost:8080/photo/{{this.id}}" alt="your image" />
+    </div>
 {{/each}}
 </body>
 </html>
@@ -41,5 +46,27 @@
             };
             reader.readAsDataURL(input.files[0]);
         }
+    }
+    async function favorito(id,usuario){
+        const likebtn = document.getElementById('likeB'+id);
+        const post = document.getElementById('post'+id);
+        let caca;
+        await fetch('http://localhost:8080/favorito', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ "fotoo": id, "usuario": {{usuario}} })
+        }).then(response => response.json())
+                .then(response => {
+                    caca = response
+                })
+        if (caca.resu==1){
+            likebtn.value='like';
+            post.innerHTML='';
+        }
+        if (caca.resu==2)
+            likebtn.value='unlike';
     }
 </script>
