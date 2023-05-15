@@ -9,6 +9,16 @@
     <link rel="stylesheet" href="sytlesheets/inicio.css">
 </head>
 <body>
+<ul>
+    <li><a class="active" href="#home">Home</a></li>
+    <li><form action="http://localhost:8080/Miperfil" method="POST" id="formoculto">
+        <input type="hidden" id="var1" name="userId" value="{{usuario}}"/>
+        <input type="submit" value="IrPerfil">
+    </form></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#about">About</a></li>
+</ul>
+<i class="fi fi-rr-bookmark"></i>
 <p class="cerote">{{usuario}}</p>
 <form action="http://localhost:8080/Miperfil" method="POST" id="formoculto">
     <input type="hidden" id="var1" name="userId" value="{{usuario}}"/>
