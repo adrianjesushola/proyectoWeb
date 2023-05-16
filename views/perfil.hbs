@@ -12,29 +12,23 @@
 
 
 <body>
-
-
-      <div class = "perfil-contenedor">
-           <form action="http://localhost:8080/inicio" method="POST" id="formoculto">
-                <input type="hidden" id="var1" name="userId" value="{{usuario}}"/>
-                <input type="submit" value="irInicio">
-           </form></div>
-
+{{>barranav}}
 
 
       <div class  = "usuarioinfo">
           <p>Perfil de Prueba</p>
           <p>{{usuario}}</p>
+
           <div class="linea"></div>
+
            <div class="iconos">
                <a onclick="mostrarMios()" href="#mio">
-                   <img id="m1" src="icons/apps.png" alt ="Logo-MisPublicaciones">
-                   Publicaciones
-               </a>
+                   <img class="mispu"  id="misP" src="icons/apps.png" /><br/>
 
+               </a>
                <a onclick="mostrarGuardados()" href="#fak">
-                   <img id="g1" src="icons/heart.png" alt="corazon">
-                   Guardados
+                   <img class="misgu" id="misG" src="icons/heart.png" /><br/>
+
                </a>
            </div>
       </div>
@@ -82,20 +76,44 @@
 
 <script>
 
+
+
     function mostrarMios(){
         document.getElementById("mio").style.display = 'block';
         document.getElementById("fak").style.display =  'none';
-}
+       cambiarmio();
+       mostrarNoSemio();
+
+    }
 
     function mostrarGuardados(){
     document.getElementById("fak").style.display = 'block';
         document.getElementById("mio").style.display = 'none';
+        cambiarGuardados();
+        mostrarNoSeguardado()
 }
 
 
-    function cambiarmio(seleccion) {
-        let img = document.querySelector("#mio");
-        img.setAttribute("id", seleccion);
+    function cambiarmio() {
+        let img = document.querySelector("#misP");
+        img.setAttribute("src", "icons/appsSelected.png");
+
+    }
+    function cambiarGuardados() {
+        let img2 = document.querySelector("#misG");
+        img2.setAttribute("src", "icons/heartSelected.png");
+
+
+    }
+    function  mostrarNoSemio(){
+            let img = document.querySelector("#misG");
+            img.setAttribute("src", "icons/heart.png");
+
+    }
+    function  mostrarNoSeguardado(){
+        let img = document.querySelector("#misP");
+        img.setAttribute("src", "icons/apps.png");
+
     }
 
 

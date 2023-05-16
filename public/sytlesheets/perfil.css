@@ -30,19 +30,19 @@ body{
     width: 100%;
     cursor: pointer;
 }
-
+.iconos .Logo-MisPublicaciones .mios{
+    text-align: right;
+}
 .usuarioinfo{
-    width: 120%;
+    width: 100%;
     font-weight: lighter;
-    justify-content: center;
-
-    font-size: 70px;
+    text-align: center;
+    font-size: 60px;
     font-family: 'Roboto', sans-serif;
     color: #f1f1f1;
     line-height: 40px;
-
     display: flow;
-    margin: 1px;
+    margin: 5px;
     background-color: #272727;
     
 
@@ -56,25 +56,26 @@ body{
 
 .iconos{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     width: 50%;
     margin: auto;
-    padding: 15px;
+    padding: 10px;
 }
-.iconos publicaciones{
-    color: #333;
-    text-decoration: none;
-    font-size: 13px;
-}
+.mispu{
+    width: 40px;
+    height: 40px;
+    margin-left: 40%;
+    align-items: center;
 
- .iconos .Logo-MisPublicaciones{
-     width: 25px;
-     height: 25px;
-     border-radius: 50%;
-     cursor: pointer;
 }
+.misgu{
+    width: 40px;
+    height: 40px;
+    margin-left: 100%;
+    align-items: center;
 
+}
 
 .perfil-contenedor{
     height: 150px;
@@ -85,22 +86,14 @@ body{
 
 
 }
-.
- .Logo-MisPublicaciones png{
-    width: 100%;
-    float: left;
-    line-height: 0;
 
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+.misGuardados{
+    width: 70%;
+    margin: auto;
+    transform: translateX(50px);
+    padding: 20px 0;
+
+
 }
- .misGuardados{
-     width: 70%;
-     margin: auto;
-     transform: translateX(50px);
-     padding: 20px 0;
 
-
- }
 
