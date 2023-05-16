@@ -1,0 +1,163 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    width: 100%;
+    font-family: 'Roboto',sans-serif;
+    min-width: 1024px;
+    max-width: 1400px;
+    background: #fafafa;
+}
+nav{
+    min-width: 1024px;
+    max-width: 1400px;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    border-bottom: solid #dbdbdb 1px;
+    background: #fff;
+}
+.nav-cont{
+    width: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 50px;
+}
+.cont-input{
+    height: 28px;
+    border: solid 1px #dbdbdb;
+    display: flex;
+    align-items: center;
+    background: #fafafa;
+    padding: 5px;
+}
+.cont-input input{
+    border: 0;
+    outline: none;
+    background: #fafafa;
+}
+.iconos svg{
+    margin:  0 10px;
+    cursor: pointer;
+}
+.iconos .small-logo{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+header{
+    width: 60%;
+    margin: auto;
+    transform: translateY(50px);
+    padding: 20px 0;
+}
+.perfil-container{
+    display: flex;
+}
+.perfil-container img{
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.contenedor-cabezera{
+    margin-left: 100px;
+}
+.cabezera1{
+    width: 290px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    justify-content: space-between;
+}
+.cabezera1 h1{
+    color: #616161;
+    font-weight: 100;
+    font-size: 26px;
+}
+.cabezera1 button{
+    width: 100px;
+    height: 30px;
+    background-color: #fafafa;
+    border: solid #dbdbdb 1px;
+    cursor: pointer;
+}
+.cabezera1 svg{
+    cursor: pointer;
+}
+.cabezera2{
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+.cabezera3 h2,
+.cabezera3 .p-ciencia,
+.cabezera3 .p-creador,
+.cabezera3 .p-dev,
+.cabezera3 .p-suscribe{
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.cabezera3 .p-ciencia{
+    color: #a2a2a2;
+}
+.cabezera3 .p-link{
+    text-align: none;
+    color: #1e4e7c;
+}
+.historias{
+    width: 90px;
+    margin-top: 50px;
+    transform: translateX(-45px);
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+}
+.historias__dev img{
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.linea{
+    width: 100%;
+    height: 1px;
+    margin: auto;
+    background-color: #dbdbdb;
+}
+.main-nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 50%;
+    margin: auto;
+    padding: 15px;
+}
+.main-nav a{
+    color: #333;
+    text-decoration: none;
+    font-size: 13px;
+}
+main{
+    width: 70%;
+    margin: auto;
+    margin-top: 60px;
+}
+.mainCont__grid{
+    display: grid;
+    grid-template-columns: repeat(3,32%);
+    grid-template-rows: repeat(5,auto);
+    gap: 2%;
+    height: auto;
+}
+.mainCont__grid div > img{
+    width: 100%;
+    cursor: pointer;
+}
