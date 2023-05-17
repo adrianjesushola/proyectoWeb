@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm install & node app.js"
+    "start": "npm install bcryptjs & npm install dotenv & npm install express & npm install express-fileupload & npm install hbs & npm install knex & npm install sqlite3 & node app.js"
   },
   "keywords": [],
   "author": "",
