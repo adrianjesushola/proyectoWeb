@@ -1,0 +1,24 @@
+.postContenedorPrin {
+    display: inline-block;
+    background-color: #272727;
+    border-radius: 50px;
+    width: 32%;
+    margin-left: 1%;
+    -webkit-box-shadow: 5px 6px 15px 5px rgba(0,0,0,0.41);
+    -moz-box-shadow: 5px 6px 15px 5px rgba(0,0,0,0.41);
+    box-shadow: 5px 6px 15px 5px rgba(0,0,0,0.41);
+    margin-bottom: 15px;
+}
+
+.imagenPost {
+    width: 96%;
+    margin-left: 2%;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+
+.posCorazon {
+    float: right;
+    margin-right: 3%;
+    margin-top: 3%;
+}
