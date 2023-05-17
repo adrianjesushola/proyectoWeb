@@ -22,7 +22,7 @@ body{
 
 
 .form-login{
-    width: 300px;
+    width: 400px;
     padding: 40px;
     background: #272727;
     text-align: center;
@@ -31,7 +31,7 @@ body{
 }
 
 .form-reg{
-    width: 300px;
+    width: 400px;
     padding: 40px;
     background: #272727;
     text-align: center;
@@ -53,7 +53,7 @@ body{
     padding: 8px 15px;
     text-align: center;
     border: 2px solid #7f00b2;
-    width: 200px;
+    width: 300px;
     outline: none;
     color: white;
     border-radius: 25px;
@@ -71,7 +71,7 @@ body{
     padding: 8px 15px;
     text-align: center;
     border: 2px solid #7f00b2;
-    width: 200px;
+    width: 300px;
     outline: none;
     color: white;
     border-radius: 25px;
@@ -116,14 +116,14 @@ body{
 
 .form-login input[type="email"]:focus,
 .form-login input[type="password"]:focus{
-    width: 220px;
+    width: 320px;
     border-color: white;
 }
 
 .form-reg input[type="text"]:focus,
 .form-reg input[type="email"]:focus,
 .form-reg input[type="password"]:focus{
-    width: 220px;
+    width: 320px;
     border-color: white;
 }
 
@@ -209,3 +209,6 @@ body{
     text-decoration: none;
 }
 
+.men{
+    color: #ff0c0c;
+}

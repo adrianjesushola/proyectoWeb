@@ -4,20 +4,19 @@
 </head>
 <script src="/path/to/masonry.pkgd.min.js"></script>
 <div class="grid" data-masonry='{ "itemSelector": ".grid-item"}'>
-    {{#each posts}}
-        <div class="grid-item">
-            {{#if this.liked}}
-                <form action="javascript:;" onsubmit="favorito({{this.id}},{{usuario}});" >
-                    <input id='likeB{{this.id}}' type="submit" value="unlike" class="btnDLike posCorazon">
-                </form>
-            {{/if}}
-            {{#unless this.liked}}
-                <form action="javascript:;" onsubmit="favorito({{this.id}},{{usuario}});" >
-                    <input id='likeB{{this.id}}' type="submit" value="like" class="btnLike posCorazon">
-                </form>
-            {{/unless}}
-            <p class="titulo">{{this.username}}</p>
-            <p class="desc">{{this.Descripcion}}</p>
+    {{#each postsL}}
+        <div class="grid-item" id="post{{this.id}}">
+            <div class="row">
+                <div class="col-6">
+                    <p class="titulo">{{this.username}}</p>
+                    <p class="desc">{{this.Descripcion}}</p>
+                </div>
+                <div class="col-6">
+                        <form action="javascript:;" onsubmit="favorito({{this.id}},{{usuario}});" >
+                            <input id='likeB{{this.id}}' type="submit" value="unlike" class="btnDLike posCorazon">
+                        </form>
+                </div>
+            </div>
             <img src="http://localhost:8080/photo/{{this.id}}" alt="your image" class="imagenPost"/>
         </div>
     {{/each}}

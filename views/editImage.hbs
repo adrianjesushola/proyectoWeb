@@ -12,20 +12,24 @@
 </head>
 <body>
 {{>barranav}}
-<form action="http://localhost:8080/subirImagen" enctype="multipart/form-data" method="POST">
+<form id='fEliminar'style="display: none" action="http://localhost:8080/eliminarPost" enctype="multipart/form-data" method="POST">
+    <input type="hidden" id="usuario" name="userId" value="{{usuario}}"/>
+    <input type="hidden" id="usuario" name="postID" value="{{post.id}}"/>
+</form>
+<form action="http://localhost:8080/editarDesc" enctype="multipart/form-data" method="POST">
     <div class="row">
         <div class="col-sm-4"></div>
         <div class="col-sm-4">
             <div class="contenido">
                 <div>
-                <input id="escoger" type="file" name="pic" onchange="readURL(this);" style="display: none" required="required"/>
                 <div class="cosasarriba">
-                    <input type="button" class="btnCF" value="caco" onclick="document.getElementById('escoger').click();"/>
+                    <input type="button" class="btnB" value="caco" onclick="document.getElementById('fEliminar').submit();"/>
                 </div>
-                <img id="blah" class="imagen" src="icons/default-placeholder.png" alt="your image" />
-                    <input class='descr' type="text" id="desc" name="descripcion" placeholder="Descripción"/>
-                <input class="publicar" type="submit" value="Publicar"/>
+                <img id="blah" class="imagen" src="http://localhost:8080/photo/{{post.id}}" alt="your image" />
+                    <input class='descr' type="text" id="desc" name="descripcion" placeholder="Descripción" value="{{post.Descripcion}}"/>
+                    <input class="publicar" type="submit" value="Guardar cambios"/>
                 <input type="hidden" id="usuario" name="userId" value="{{usuario}}"/>
+                    <input type="hidden" id="usuario" name="postID" value="{{post.id}}"/>
                 </div>
             </div>
         </div>

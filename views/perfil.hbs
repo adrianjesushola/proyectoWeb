@@ -13,82 +13,53 @@
 
 <body>
 {{>barranav}}
-
-
       <div class  = "usuarioinfo">
-          <p>Perfil de Prueba</p>
-          <p>{{usuario}}</p>
-
+          <p class="nombreUsuario">{{username}}</p>
           <div class="linea"></div>
-
-           <div class="iconos">
-               <a onclick="mostrarMios()" href="#mio">
-                   <img class="mispu"  id="misP" src="icons/apps.png" /><br/>
-
-               </a>
-               <a onclick="mostrarGuardados()" href="#fak">
-                   <img class="misgu" id="misG" src="icons/heart.png" /><br/>
-
-               </a>
-           </div>
+               <div class="row">
+                   <div class="col-sm-4"></div>
+                   <div class="col-sm-2">
+                   <a onclick="mostrarMios()">
+                       <img class="mispu"  id="misP" src="icons/appsSelected.png" /><br/>
+                   </a>
+                   </div>
+                   <div class="col-sm-2">
+                   <a onclick="mostrarGuardados()">
+                       <img class="misgu" id="misG" src="icons/heart.png" /><br/>
+                   </a>
+                   </div>
+                   <div class="col-sm-4"></div>
+               </div>
       </div>
-
-      <div class = "mainCont_grid">
-
-          <style>
-              #fak{
-                  display: none;
-              }
-              #mio{
-                  display: block;
-              }
-
-          </style>
-
-          <div class="fav" id="fak" onclick="mostrarGuardados()">
-          {{#each postsL}}
-
-              <div id="post{{this.id}}">
-                  <form action="javascript:;" onsubmit="favorito({{this.id}},{{usuario}});" >
-                      <input id='likeB{{this.id}}' type="submit" value="unlike">
-                  </form> </div>
-                   <p>{{this.id}}</p>
-                  <p>{{this.Descripcion}}</p>
-                  <img src="http://localhost:8080/photo/{{this.id}}" alt="your image" />
-          {{/each}}
+         <!-- <div class="fav" id="fak" onclick="mostrarGuardados()">
+              {{>posts}}
           </div>
-              <div class="mios" id="mio" onclick="mostrarMios()">
-                  {{#each posts}}
+          <div class="mios" id="mio" onclick="mostrarMios()">
+              {{>postsMP}}
+          </div>-->
+        <div id="misPD" class="cont">
+            {{>postsMP}}
+        </div>
+        <div id="favD" class="cont">
+            {{>postsLiked}}
+        </div>
 
-                      <p>{{this.id}}</p>
-                      <p>{{this.Descripcion}}</p>
-                      <img src="http://localhost:8080/photo/{{this.id}}" alt="your image" />
-                  {{/each}}
-
-              </div>
-
-
-
-
-      </div>
 </body>
 </html>
 
 <script>
-
-
+    document.getElementById("favD").style.visibility='hidden';
 
     function mostrarMios(){
-        document.getElementById("mio").style.display = 'block';
-        document.getElementById("fak").style.display =  'none';
+        document.getElementById("misPD").style.visibility = 'visible';
+        document.getElementById("favD").style.visibility =  'hidden';
        cambiarmio();
        mostrarNoSemio();
-
     }
 
     function mostrarGuardados(){
-    document.getElementById("fak").style.display = 'block';
-        document.getElementById("mio").style.display = 'none';
+        document.getElementById("favD").style.visibility = 'visible';
+        document.getElementById("misPD").style.visibility = 'hidden';
         cambiarGuardados();
         mostrarNoSeguardado()
 }
@@ -97,13 +68,10 @@
     function cambiarmio() {
         let img = document.querySelector("#misP");
         img.setAttribute("src", "icons/appsSelected.png");
-
     }
     function cambiarGuardados() {
         let img2 = document.querySelector("#misG");
         img2.setAttribute("src", "icons/heartSelected.png");
-
-
     }
     function  mostrarNoSemio(){
             let img = document.querySelector("#misG");
@@ -132,6 +100,8 @@
             reader.readAsDataURL(input.files[0]);
         }
     }
+
+
     async function favorito(id,usuario){
         const likebtn = document.getElementById('likeB'+id);
         const post = document.getElementById('post'+id);
@@ -147,11 +117,16 @@
                 .then(response => {
                     caca = response
                 })
-        if (caca.resu==1){
-            likebtn.value='like';
-            post.innerHTML='';
+        if (caca.resu==1) {
+            likebtn.value = 'like';
+            likebtn.className = 'btnLike posCorazon';
+            console.log('dislike')
+            post.remove();
         }
-        if (caca.resu==2)
-            likebtn.value='unlike';
+        if (caca.resu==2) {
+            likebtn.value = 'unlike';
+            likebtn.className = 'btnDLike posCorazon';
+            console.log('like')
+        }
     }
 </script>

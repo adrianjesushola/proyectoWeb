@@ -10,6 +10,7 @@
     <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="sytlesheets/login.css">
+
     <style>
         .form-entrar {
             display: none;
@@ -17,37 +18,39 @@
 
     </style>
 </head>
-<
 <body>
 <div class="form">
 
-<form action="javascript:;" onsubmit="inicSesion()" class="form-login form-entrar" id="login">
-    <h1 class="form-title">LOG IN</h1>
+<form action="javascript:;" onsubmit="inicSesion()" class="form-login" id="login">
+    <h1 class="form-title">Iniciar sesión</h1>
+    <p class="men" id="mensaje2"></p>
     <input type="email" id="emailIS" name="correo" placeholder="Correo electrónico" required="required" />
     <input type="password" id="passwordIS" name="contra" placeholder="contrasñea" required="required"/>
-
-    <input type="submit" value="Submit">
+    <input type="submit" value="Iniciar sesión">
     <p class="message">
         No estas registrado? <a class="form_link" href="#" id="linkCreate">Crea una cuenta</a>
     </p>
 </form>
-
-    <form action="javascript:;" onsubmit="registrar()" class="form-reg" id="createA">
-        <h1 class="form-title">Registrate</h1>
-        <input type="text" id="user" name="usuario" placeholder="Usuario" required="required"/>
-        <input type="email" id="email" name="correo" placeholder="Correo electrónico" required="required" />
-        <input type="password" id="password" name="contra" placeholder="contrasñea" required="required"/>
-        <input type="submit" value="Submit">
+    <form action="javascript:;" onsubmit="registrar()" class="form-reg form-entrar" id="createA">
+            <h1 class="form-title">Registrate</h1>
+            <p class="men" id="mensaje"></p>
+            <input type="text" id="user" name="usuario" placeholder="Usuario" required="required"/>
+            <input type="email" id="email" name="correo" placeholder="Correo electrónico" required="required" />
+            <input type="password" id="password" name="contra" placeholder="contrasñea" required="required"/>
+            <input type="submit" value="Registrar">
         <p class="message">
             Ya tienes una cuenta? <a class="form_link" href="#" id="linkLogin">Inicia sesion</a></p>
-
     </form>
 </div>
+<form style="display: none" action="http://localhost:8080/inicio" method="POST" id="formoculto">
+    <input type="hidden" id="var1" name="userId" value=""/>
+</form>
 </body>
 
 </html>
 <script>
     async function registrar (){
+        console.log('aaaa')
         const user=document.getElementById('user').value;
         const email=document.getElementById('email').value;
         const password=document.getElementById('password').value;

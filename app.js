@@ -34,7 +34,6 @@ app.post('/inicio', async function (req, res) {
     const us = req.body.userId
     const publicaciones = await knex('post');
     const likes = await knex('likes').where({usuario:us});
-    let pubsLiked = []
     for (const pub in publicaciones){
         let liked = false;
         for (const like in likes) {
@@ -44,6 +43,8 @@ app.post('/inicio', async function (req, res) {
             }
         }
         publicaciones[pub]['liked']=liked;
+        const usuario = await knex('usuarios').where({id:us}).first();
+        publicaciones[pub]['username']=usuario.usuario;
     }
     publicaciones.reverse();
     cdx ={usuario: us, posts: publicaciones}
@@ -51,17 +52,21 @@ app.post('/inicio', async function (req, res) {
 })
 
 app.post('/Miperfil', async function (req, res) {
+    console.log(req.body)
     const us = req.body.userId
     const publicaciones = await knex('post').where({userId:us});
     const likes = await knex('likes').where({usuario:us});
     let pubsLiked = []
     for (const like in likes) {
         const pubLiked = await knex('post').where({id:likes[like].post});
+        const usuario = await knex('usuarios').where({id:pubLiked['0'].userId}).first();
+        pubLiked[0]['username']=usuario.usuario;
         pubsLiked.push(pubLiked[0]);
     }
+    const usuario = await knex('usuarios').where({id:us}).first();
     publicaciones.reverse();
     pubsLiked.reverse();
-    cdx ={usuario: us, posts: publicaciones, postsL: pubsLiked}
+    cdx ={usuario: us, posts: publicaciones, postsL: pubsLiked, username:usuario.usuario}
     res.render('perfil',cdx);
 })
 
@@ -86,7 +91,7 @@ app.post('/subirImagen', async (req, res) =>{
         publicaciones.reverse();
         pubsLiked.reverse();
         cdx ={usuario: us, posts: publicaciones, postsL: pubsLiked}
-        res.render('perfil',cdx);
+        res.redirect(307,'Miperfil');
     } else {
         res.sendStatus(400);
     }
@@ -142,6 +147,37 @@ app.post('/iniciarSesion', async (req, res) =>{
     }
 })
 
+app.post('/editarImagen', async (req, res) =>{
+    const pID = req.body.postID
+    const post = await knex('post').where({id:pID}).first();
+    const user = req.body.userId;
+    if (post){
+        cdx = {post:post, usuario:user }
+        res.render('editImage',cdx);
+    }
+})
+app.post('/editarDesc', async (req, res) =>{
+    const pID = req.body.postID
+    const post = await knex('post').where({id:pID}).first();
+    const user = req.body.usuario;
+    const desc = req.body.descripcion;
+    if (post){
+        await knex('post').where({id:pID}).update({Descripcion: desc});
+        cdx = {post:post, usuario:user};
+        console.log(cdx)
+        res.redirect(307,'/Miperfil');
+    }
+})
+
+app.post('/eliminarPost', async (req, res) =>{
+    const pID = req.body.postID
+    const post = await knex('post').where({id:pID}).first();
+    const user = req.body.usuario;
+    if (post){
+        await knex('post').where({id:pID}).del();
+        res.redirect(307,'/Miperfil');
+    }
+})
 app.get('/photo/:id', async (req, res) => {
     const id = req.params.id;
     const img = await knex('post').where({id:id}).first();

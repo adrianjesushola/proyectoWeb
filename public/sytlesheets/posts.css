@@ -20,6 +20,7 @@
     margin-bottom: 15px;
 }
 .grid{
+    margin-top:10px;
     width: 100%;
 }
 .imagenPost {
@@ -39,8 +40,6 @@
     color: #aaaaaa;
     margin-left: 3%;
 }
-
-
 .posCorazon {
     float: right;
     margin-right: 3%;
